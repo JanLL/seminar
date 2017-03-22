@@ -10,6 +10,8 @@
 \usepackage{subcaption}
 
 
+\setlength{\parindent}{0pt}
+
 \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
 
 
@@ -73,6 +75,7 @@ Due to the fact that we want to maximize $p(f)$ we can take the negative logarit
 \begin{equation}
 E(f) = - \ln(p(f)) = \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) - \sum\limits_{p \in \mathcal{P}} \ln(g(i, p, f_p))
 \end{equation}
+\label{eq:energy-function}
 
 In general for $k$ labels and $m$ pixels there are $k^m$ possible states of $f$. A common image contains for example $m = 800 \times 600 = 480,000$ pixels, means even for just $k = 2$ labels in the case of a foreground-background segmentation there are $k^m \approx 10^{144,000}$ possible configurations for $f$. This is a lot more than the number of (fermion) particles in our universe.
 
@@ -94,6 +97,33 @@ with labels which are able to decrease the energy value in comparison to the one
 
 
 \subsection{Multiway Cut Problem}
+In order to solve this combinatorial optimization problem efficiently we build up a new graph $\mathcal{G} = \langle \mathcal{V} = \mathcal{V}_p \cup \mathcal{V}_t, \mathcal{E} = \mathcal{E}_n \cup \mathcal{E}_n \rangle$ the following way:
+
+In total there are $m$ nodes $\mathcal{V}_p$ for each pixel and $k$ so called terminal nodes $\mathcal{V}_t$ for all labels. Now there are two kinds of edges. First so called t-links $\mathcal{E}_t$ between each pixel and the terminals according to the reduced label sets $\mathcal{L}_p$. Each t-link is assigned the weight
+\begin{equation}
+	w_{p,l} = h(i,p,l) + \sum\limits_{q \in \mathcal{N}_p} w_{p,q}
+\end{equation}
+
+On the other hand n-links $\mathcal{E}_n$ between neighbouring pixels with the weight
+
+\begin{equation}
+	w_{p,q} = 2 u_{p,q}
+\end{equation}
+
+\textbf{Definition: \textit{multiway cut}}\\
+A multiway cut is a subset $\mathcal{C} \subset \mathcal{E}$ of the graph's edges such that all terminals are no longer connected via edges in the induced graph $\mathcal{G}(\mathcal{C}) = \langle \mathcal{V}, \mathcal{E} - \mathcal{C}\rangle$. The cost of the cut $|\mathcal{C}|$ is the sum over all cutted edge's weights. 
+
+The minimum multiway cut problem is to find the multiway cut which minimizes $|\mathcal{C}|$. \\
+
+\textbf{Definition: \textit{feasability multiway cut}}\\
+A multiway cut is called feasible if each pixel node is left connected with exactly one terminal node in $\mathcal{G}(\mathcal{C})$. \\
+
+
+It can be proven that a minimum cost multiway cut $\mathcal{C}$ on $\mathcal{G}$ for terminals $\mathcal{L}$ must be feasible \cite{boykov98} and furthermore if $\mathcal{C}$ is a minimum cost multiway cut on $\mathcal{G}$, then the corresponding labeling $f^C$ minimizes $E(f)$ in \eqref{eq:energy-function} \cite{boykov98}.
+
+
+
+
 
 \section{Approximative Algorithms for the Multiway Cut Problem}
 \subsection{$\alpha$ - $\beta$ - Swap}
