@@ -4,11 +4,13 @@
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb, amstext}
 \usepackage{wrapfig}
-
-
+\usepackage{color}
 
 \usepackage{caption}
 \usepackage{subcaption}
+
+
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
 
 
 \title{Seminar Combinatorial Optimization}
@@ -28,12 +30,12 @@ In this work there will be presented the results of Yuri Boykov et al. \cite{boy
 
 
 \section{Mathematics}
-Given some random variables called Observations $O$ from input data the final objective is to achieve the hypothesis $f$, which equates the segmentation.
+In computer vision tasks we handle with images containing pixels $P = \{ 1, 2, ..., m \}$. Each of these pixels have two attributes in terms of random variables, observation $O$ and hypothesis $f$. In the task of image segmentation the observation $O$ would be for example the result of normalized correlation (see ...) and $f \in \mathcal{L}^m$ with $\mathcal{L} = \{l_1,l_ 2, ..., l_k\}$ are the k labels of the segmentation pattern we are finally looking for (see ...). \\
 
 
 \subsection{Maximum a posteriori (MAP) estimate}
 
-So in the end we want $f$ s.t. $p(f|O)$ is maximized. Using Bayes' rule
+So in the end we want $f$ s.t. $p(f|O)$ is maximized, called $f^*$. Using Bayes' rule
 
 \begin{equation}
 	p(f|O) \propto p(O|f) p(f)
@@ -43,38 +45,52 @@ means that we need expressions for $p(O|f)$ and $p(f)$.
 
 
 \subsection{Markov Random Fields (MRFs)}
-In computer vision tasks we handle with images containing pixels $P = \{ 1, 2, ..., m \}$. Each of these pixels has two attributes in terms of random variables, observation $O$ and hypothesis $f$. In the task of image segmentation the observation $O$ would be for example the result of normalized correlation (see ...) and $f$ are the labels of the segmentation pattern (see ...). \\
+The system of pixels (including their random variables $f_p$ and $O_p$) can be drawn as a graph where each pixel is represented by a node. In a Markov Random Field all neighboring pixels are connected with an edge (see ...). 
 
-This system of pixels can be drawn as a graph where each pixel is represented by a node. In a Markov Random Field all neighboring pixels are connected with an edge (see ...). Due to the Hammersley-Clifford theorem, which stats that the prior term can be written as sum of potentials in an exponential functions, it holds for our MRF:
+Due to the Hammersley-Clifford theorem, which states that the prior term can be written as sum of potentials in an exponential functions, it holds for our MRF:
 \begin{equation}
 	p(f) \propto \exp\{ - \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) \}
 \end{equation}
 where $\mathcal{N}_p$ are the neighboring pixels of $p$ and $V_{pq}$ is the potential between pixel $p$ and $q$. This term is usually used to smooth the solution, i.e. penalize different neighboring labels $f_p \neq f_q$.
 
-Examples for potentials $V$ are
+Examples for potentials $V_{pq}$ are
 \begin{itemize}
 	\item Generalized Potts model: $V_{pq}(f_p, f_q) = u_{pq} (1 - \delta(f_p - f_q))$
 	\item Truncated quadratic distance: $V_{pq}(f_p, f_q) = \min (K=const, |f_p - f_q|^2)$
 	\item Truncated $L_2$ norm: $V_{pq}(f_p, f_q) = ???$
 \end{itemize}
 
-For the data term $p(O|f)$ we are assuming an independend and identical distributed (iid) distribution so we get
+The other term $p(O|f)$ is often called data term because here we are using the information of the input image we want to segment. For this term we are using the independend and identical distributed (iid) assumption so we get
 
 \begin{equation}
 	p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i, p, f_p)
 \end{equation}
 
-where g is ???
+where $g \in [0, 1]$. Examples ??? \\
 
-Due to the fact that we want to maximize $p(f)$ we can take the negative logarithm and minimize the resultung Energy function
+Due to the fact that we want to maximize $p(f)$ we can take the negative logarithm (which is monotonic and therefore doesnt change the position of the extremum) and minimize the resultung Energy function
 
 \begin{equation}
 E(f) = - \ln(p(f)) = \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) - \sum\limits_{p \in \mathcal{P}} \ln(g(i, p, f_p))
 \end{equation}
 
+In general for $k$ labels and $m$ pixels there are $k^m$ possible states of $f$. A common image contains for example $m = 800 \times 600 = 480,000$ pixels, means even for just $k = 2$ labels in the case of a foreground-background segmentation there are $k^m \approx 10^{144,000}$ possible configurations for $f$. This is a lot more than the number of (fermion) particles in our universe.
 
+Because of this it would be useful being able to reduce the number of possible states:
 
+In general if $E(f^*)$ is finite, one can always find some constant $K(p)$ for each pixel $p$ s.t. the following holds:
 
+\begin{equation}
+	- \ln(g(i, p, f_p^*)) < K(p)
+\end{equation}
+
+It will be further explained by taking $K(p) = E(f)$, which one always use if no better argument is available. Given some $E(f)$ we can drop all labels $l$ of pixel $p$ where $- \ln(g(i, p, l)) > E(f)$ because this data term alone is higher than the energy we found. The other terms will just increase it even more. So we can define label sets for each pixel
+\begin{equation}
+	\mathcal{L}_p = \{l \in \mathcal{L}: \ - \ln(g(i, p, l)) < E(f) \}
+\end{equation}
+with labels which are able to decrease the energy value in comparison to the one we already found $E(f)$.
+
+\todo{Abgeaenderte Energy function mit h statt g... wobei ich nicht kapier warum die aequivalenz gilt...}
 
 
 \subsection{Multiway Cut Problem}
