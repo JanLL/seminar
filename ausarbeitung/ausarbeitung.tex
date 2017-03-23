@@ -5,6 +5,8 @@
 \usepackage{amsmath, amssymb, amstext}
 \usepackage{wrapfig}
 \usepackage{color}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \usepackage{caption}
 \usepackage{subcaption}
@@ -126,8 +128,63 @@ It can be proven that a minimum cost multiway cut $\mathcal{C}$ on $\mathcal{G}$
 
 
 \section{Approximative Algorithms for the Multiway Cut Problem}
+Due to the fact that solving the whole multiway cut problem exactly is NP-complete we are forced to use approximative methods in order to solve the problem in a reasonable time.
+The following algorithms are based on comparing just two different labels at once, that is a usual min-cut problem which can be solved in near-linear time.
+
+
 \subsection{$\alpha$ - $\beta$ - Swap}
+
+
+\begin{algorithm}[H]
+\caption{$\alpha - \beta - Swap$}\label{alg:alpha-beta-swap}
+\begin{algorithmic}[1]
+\Procedure{AlphaBetaSwap($f$)}{}
+	\State $f$: (Arbitrary) initial labeling 
+	\State
+	\State Set $success = 0$
+	\For{each pair of labels $\{\alpha, \beta\} \subset \mathcal{L}$ }:
+		\State Find $\hat{f} = \arg \min E(f')$ among $f'$ within one $\alpha-\beta$ swap of $f$
+		\If{$E(\hat{f}) < E(f)$}:
+			\State Set $f := \hat{f}$
+			\State Set $success = 1$
+		\EndIf
+	\EndFor
+	\If{$success == 1$}:
+		\State go to step 4
+	\EndIf
+	\State
+	\State \Return{$f$}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+
+
 \subsection{$\alpha$-Expansion}
+
+\begin{algorithm}[H]
+\caption{$\alpha-Expansion$}\label{alg:alpha-expansion}
+\begin{algorithmic}[1]
+\Procedure{AlphaExpansion($f$)}{}
+	\State $f$: (Arbitrary) initial labeling 
+	\State
+	\State Set $success = 0$
+	\For{each label $\alpha \in \mathcal{L}$ }:
+		\State Find $\hat{f} = \arg \min E(f')$ among $f'$ within one $\alpha$-expansion of $f$
+		\If{$E(\hat{f}) < E(f)$}:
+			\State Set $f := \hat{f}$
+			\State Set $success = 1$
+		\EndIf
+	\EndFor
+	\If{$success == 1$}:
+		\State go to step 4
+	\EndIf
+	\State
+	\State \Return{$f$}
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
 
 \section{Applications in Vision problems}
 \subsection{Image restoration}
