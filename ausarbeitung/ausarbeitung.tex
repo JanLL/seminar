@@ -4,6 +4,8 @@
 \usepackage[english]{babel}
 \usepackage{amsmath, amssymb, amstext}
 \usepackage{wrapfig}
+\usepackage{float}
+\usepackage{graphicx}
 \usepackage{color}
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
@@ -71,6 +73,7 @@ The other term $p(O|f)$ is often called data term because here we are using the 
 \end{equation}
 
 where $g \in [0, 1]$. Examples ??? \\
+\todo{mit $D_p(\alpha)$ schreiben wie in 2. Paper...} \\
 
 Due to the fact that we want to maximize $p(f)$ we can take the negative logarithm (which is monotonic and therefore doesnt change the position of the extremum) and minimize the resultung Energy function
 
@@ -103,14 +106,17 @@ In order to solve this combinatorial optimization problem efficiently we build u
 
 In total there are $m$ nodes $\mathcal{V}_p$ for each pixel and $k$ so called terminal nodes $\mathcal{V}_t$ for all labels. Now there are two kinds of edges. First so called t-links $\mathcal{E}_t$ between each pixel and the terminals according to the reduced label sets $\mathcal{L}_p$. Each t-link is assigned the weight
 \begin{equation}
-	w_{p,l} = h(i,p,l) + \sum\limits_{q \in \mathcal{N}_p} w_{p,q}
+	V_{p,l} = h(i,p,l) + \sum\limits_{q \in \mathcal{N}_p} V_{p,q}
 \end{equation}
+\todo{Verstehe nicht wirklich warum hier noch n-links drin sind...}
 
 On the other hand n-links $\mathcal{E}_n$ between neighbouring pixels with the weight
 
 \begin{equation}
-	w_{p,q} = 2 u_{p,q}
+	V_{p,q} = 2 u_{p,q}
 \end{equation}
+
+\todo{Formel gilt nur fuer Potts-model... was wenn z.b. truncated squared model?}
 
 \textbf{Definition: \textit{multiway cut}}\\
 A multiway cut is a subset $\mathcal{C} \subset \mathcal{E}$ of the graph's edges such that all terminals are no longer connected via edges in the induced graph $\mathcal{G}(\mathcal{C}) = \langle \mathcal{V}, \mathcal{E} - \mathcal{C}\rangle$. The cost of the cut $|\mathcal{C}|$ is the sum over all cutted edge's weights. 
@@ -132,11 +138,35 @@ Due to the fact that solving the whole multiway cut problem exactly is NP-comple
 The following algorithms are based on comparing just two different labels at once, that is a usual min-cut problem which can be solved in near-linear time.
 
 
-\subsection{$\alpha$ - $\beta$ - Swap}
+\subsection{$\alpha$-$\beta$ swap}
 
+The first algorithm $\alpha$-$\beta$ swap is shown in Algorithm \ref{alg:alpha-beta-swap}. In each iteration we just consider the subgraph $\mathcal{G}_{\alpha \beta} = \langle \mathcal{V}_{\alpha \beta}, \mathcal{E}_{\alpha \beta} \rangle$, i.e. just take the pixels which has been labeled $\alpha$ or $\beta$ before into account. Choosing the edge weights properly
+
+\begin{figure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut1.png}
+		\caption{}
+		\label{fig:alpha-beta-swap_Gab_cut1}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut2.png}
+		\caption{}
+		\label{fig:alpha-beta-swap_Gab_cut2}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut3.png}
+		\caption{}
+		\label{fig:alpha-beta-swap_Gab_cut3}
+	\end{subfigure}
+\label{fig:alpha-beta-swap_Gab_cuts}
+\caption{}
+\end{figure}
 
 \begin{algorithm}[H]
-\caption{$\alpha - \beta - Swap$}\label{alg:alpha-beta-swap}
+\caption{$\alpha$-$\beta$ swap}\label{alg:alpha-beta-swap}
 \begin{algorithmic}[1]
 \Procedure{AlphaBetaSwap($f$)}{}
 	\State $f$: (Arbitrary) initial labeling 
@@ -160,10 +190,42 @@ The following algorithms are based on comparing just two different labels at onc
 
 
 
-\subsection{$\alpha$-Expansion}
+
+
+
+
+
+\subsection{$\alpha$-expansion}
+
+
+
+\begin{figure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-expansion_cut1.png}
+		\caption{}
+		\label{fig:alpha-expansion_Gab_cut1}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-expansion_cut2.png}
+		\caption{}
+		\label{fig:alpha-expansion_Gab_cut2}
+	\end{subfigure}
+	\begin{subfigure}{0.32\textwidth}
+		\centering
+		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-expansion_cut3.png}
+		\caption{}
+		\label{fig:alpha-expansion_Gab_cut3}
+	\end{subfigure}
+\label{fig:alpha-expansion_Gab_cuts}
+\caption{}
+\end{figure}
+
+
 
 \begin{algorithm}[H]
-\caption{$\alpha-Expansion$}\label{alg:alpha-expansion}
+\caption{$\alpha$-expansion}\label{alg:alpha-expansion}
 \begin{algorithmic}[1]
 \Procedure{AlphaExpansion($f$)}{}
 	\State $f$: (Arbitrary) initial labeling 
