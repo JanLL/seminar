@@ -140,9 +140,22 @@ The following algorithms are based on comparing just two different labels at onc
 
 \subsection{$\alpha$-$\beta$ swap}
 
-The first algorithm $\alpha$-$\beta$ swap is shown in Algorithm \ref{alg:alpha-beta-swap}. In each iteration we just consider the subgraph $\mathcal{G}_{\alpha \beta} = \langle \mathcal{V}_{\alpha \beta}, \mathcal{E}_{\alpha \beta} \rangle$, i.e. just take the pixels which has been labeled $\alpha$ or $\beta$ before into account. 
+\todo{Weights?!}
 
-Cutting the terminal $t_p^\alpha$ assigns pixel $p$ label $\alpha$. Note: terminal  $t_p^\beta$ must not be cutted then. All pixels $p \notin \mathcal{P}_{\alpha \beta}$ keep obviously the same label as before. Examples for cuts are shown in Figure \ref{fig:alpha-beta-swap_Gab_cuts}.
+\begin{wrapfigure}{r}{0.5\textwidth} 
+	\vspace{-1.5cm}
+	\includegraphics[width=0.5\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab.png}
+	\caption{blubb}
+	\label{fig:alpha-beta-swap_Gab}
+\end{wrapfigure}
+
+The first algorithm $\alpha$-$\beta$ swap is shown in Algorithm \ref{alg:alpha-beta-swap}. In each iteration in step 6 we just consider the subgraph $\mathcal{G}_{\alpha \beta} = \langle \mathcal{V}_{\alpha \beta}, \mathcal{E}_{\alpha \beta} \rangle$, i.e. just take the pixels into account which have been labeled $\alpha$ or $\beta$ before (see Fig. \ref{fig:alpha-beta-swap_Gab}) and find the corresponding minimum cut. This is done for all possible pairs of labels. If some swap achieve a lower energy $E(\hat{f})$ of the complete graph $\mathcal{G}$, the labeling will be updated. If no possible swap improve the result further, the algorithm has finished. \\
+
+Within the subproblem of finding the minimum cut of $\mathcal{G}_{\alpha \beta}$ cutting the terminal $t_p^\alpha$ assigns pixel $p$ label $\alpha$. 
+All pixels $p \notin \mathcal{P}_{\alpha \beta}$ keep obviously the same label as before. 
+
+
+The different case of cuts are shown in Figure \ref{fig:alpha-beta-swap_Gab_cuts}.
 
 
 \begin{figure}[H]
@@ -175,7 +188,10 @@ Choosing the edge weights properly conducts to the following main results: \\
 There is a one to one correspondence between cuts $\mathcal{C}$ on $\mathcal{G}_{\alpha \beta}$ and labelings that are one $\alpha$-$\beta$ swap away from $f$. Moreover, the cost of a cut $\mathcal{C}$ on $\mathcal{G}_{\alpha \beta}$ is $|\mathcal{C}| = E(f^\mathcal{C})$ plus a constant. \\
 
 \textbf{Corollary:}\\
-The optimal $\alpha$-$\beta$ swap from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_{\alpha \beta}$.
+The optimal $\alpha$-$\beta$ swap from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_{\alpha \beta}$. \\
+
+
+I.e. the labeling $\hat{f}$, which we get in step 6 of Algorithm \ref{alg:alpha-beta-swap} is a local minimum in the sense of switching some labels $\alpha$ and $\beta$ won't decrease the energy function's value of the whole graph $\mathcal{G}$. Further this means when the algorithm has terminated, any swap with two arbitrary labels won't achieve a lower energy which is a local minima in an extended move space.
 
 
 
@@ -213,7 +229,7 @@ The optimal $\alpha$-$\beta$ swap from $f$ is $\hat{f} = f^\mathcal{C}$ where $\
 
 
 
-\begin{figure}
+\begin{figure}[H]
 	\begin{subfigure}{0.32\textwidth}
 		\centering
 		\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-expansion_cut1.png}
