@@ -141,6 +141,7 @@ The following algorithms are based on comparing just two different labels at onc
 \subsection{$\alpha$-$\beta$ swap}
 
 \todo{Weights?!}
+\todo{auf semi-metric eingehen?}
 
 \begin{wrapfigure}{r}{0.5\textwidth} 
 	\vspace{-1.5cm}
@@ -227,6 +228,29 @@ I.e. the labeling $\hat{f}$, which we get in step 6 of Algorithm \ref{alg:alpha-
 
 \subsection{$\alpha$-expansion}
 
+\todo{nur fuer Potential = Metrik ...}
+
+
+\begin{wrapfigure}{r}{0.5\textwidth}
+	\vspace{-1.5cm}
+	\includegraphics[width=0.5\textwidth]{/home/argo/seminar/data/alpha-expansion_G.png}
+	\caption{blubb}
+	\label{fig:alpha-expansion_Gab}
+\end{wrapfigure}
+
+The next method is called $\alpha$-expansion and its procedure is shown in Algorithm \ref{alg:alpha-expansion}. In general the algorithm is analog to the one of $\alpha$-$\beta$ swap but this time the loop iterates over all labels individually and the crucial subproblem in step 6 is different:
+We are building up a new graph $\mathcal{G}_\alpha$ (see Fig. \ref{fig:alpha-expansion_Gab}) considering all pixels here as nodes, which are all connected to both a $\alpha$ and a $\bar{\alpha}$ terminal. 
+The $\alpha$ terminal is the current label and $\bar{\alpha}$ represents all other labels. 
+Between nodes of pixels which had a different labeling in the previous step there is an additional node which is just connected to the $\bar{\alpha}$ terminal. 
+Again we need to find the min-cut of $\mathcal{G}_\alpha$ where a cutted terminal-edge $t_p^\alpha$ assigns pixel $p$ the label $\alpha$ and otheriwse $t_p^{\bar{\alpha}}$ cutted means pixel $p$ keeps its previous label. Here it gets clear the additional nodes mentioned are needed: If both pixels $p$ and $q$ keep their label (see Fig. \ref{fig:alpha-expansion_Gab_cut2}) the corresponding potential term must be added to the cut costs which is done via the edge $t_\alpha^{\bar{\alpha}}$. \\
+
+
+
+\textbf{Theorem:} \\
+Let $\mathcal{G}_\alpha$ be construced as above given $f$ and $\alpha$. Then there is a one to one correspondence between elementary cuts on $\mathcal{G}_\alpha$ and labelings within one $\alpha$-expansion of $f$. Moreiver, for any elementary cut $\mathcal{C}$ we have $|\mathcal{C}| = E(f^\mathcal{C})$.
+
+\textbf{Corollary} \\
+The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_\alpha$.
 
 
 \begin{figure}[H]
