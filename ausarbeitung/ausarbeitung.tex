@@ -51,6 +51,9 @@ means that we need expressions for $p(O|f)$ and $p(f)$.
 
 
 \subsection{Markov Random Fields (MRFs)}
+
+\todo{Graph $\mathcal{G}$ bild}
+
 The system of pixels (including their random variables $f_p$ and $O_p$) can be drawn as a graph where each pixel is represented by a node. In a Markov Random Field all neighboring pixels are connected with an edge (see ...). 
 
 Due to the Hammersley-Clifford theorem, which states that the prior term can be written as sum of potentials in an exponential functions, it holds for our MRF:
@@ -242,15 +245,19 @@ The next method is called $\alpha$-expansion and its procedure is shown in Algor
 We are building up a new graph $\mathcal{G}_\alpha$ (see Fig. \ref{fig:alpha-expansion_Gab}) considering all pixels here as nodes, which are all connected to both a $\alpha$ and a $\bar{\alpha}$ terminal. 
 The $\alpha$ terminal is the current label and $\bar{\alpha}$ represents all other labels. 
 Between nodes of pixels which had a different labeling in the previous step there is an additional node which is just connected to the $\bar{\alpha}$ terminal. 
-Again we need to find the min-cut of $\mathcal{G}_\alpha$ where a cutted terminal-edge $t_p^\alpha$ assigns pixel $p$ the label $\alpha$ and otheriwse $t_p^{\bar{\alpha}}$ cutted means pixel $p$ keeps its previous label. Here it gets clear the additional nodes mentioned are needed: If both pixels $p$ and $q$ keep their label (see Fig. \ref{fig:alpha-expansion_Gab_cut2}) the corresponding potential term must be added to the cut costs which is done via the edge $t_\alpha^{\bar{\alpha}}$. \\
+Again we need to find the min-cut of $\mathcal{G}_\alpha$ where a cutted terminal-edge $t_p^\alpha$ assigns pixel $p$ the label $\alpha$ and otheriwse $t_p^{\bar{\alpha}}$ cutted means pixel $p$ keeps its previous label. Here it gets clear why the additional nodes mentioned are needed: If both pixels $p$ and $q$ keep their label (see Fig. \ref{fig:alpha-expansion_Gab_cut2}) the corresponding potential term must be added to the cut costs which is done via the edge $t_\alpha^{\bar{\alpha}}$. The other cases of cuts are shown in Fig. \ref{fig:alpha-expansion_Gab_cuts}. \\
 
+Again with appropiate edge weights one can proof \cite{boykov01} the following main results: \\
 
 
 \textbf{Theorem:} \\
-Let $\mathcal{G}_\alpha$ be construced as above given $f$ and $\alpha$. Then there is a one to one correspondence between elementary cuts on $\mathcal{G}_\alpha$ and labelings within one $\alpha$-expansion of $f$. Moreiver, for any elementary cut $\mathcal{C}$ we have $|\mathcal{C}| = E(f^\mathcal{C})$.
+Let $\mathcal{G}_\alpha$ be construced as above given $f$ and $\alpha$. Then there is a one to one correspondence between elementary cuts on $\mathcal{G}_\alpha$ and labelings within one $\alpha$-expansion of $f$. Moreover, for any elementary cut $\mathcal{C}$ we have $|\mathcal{C}| = E(f^\mathcal{C})$.
 
 \textbf{Corollary} \\
-The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_\alpha$.
+The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_\alpha$. \\
+
+
+That is we have similar results like in $\alpha$-$\beta$ swap. The labeling found $f^\mathcal{C}=\hat{f}$ is a local minima in the sense of switching some labels unlike $\alpha$ to $\alpha$ won't decrease the energy. This time one does not even compare the whole original graph $\mathcal{G}$ and the transformed one $\mathcal{G}_\alpha$ because of the equality of the costs $|\mathcal{C}| = E(f^\mathcal{C})$. So when the algorithm is finished one can be sure that switching arbitrary pixel labels to one specific label $\alpha$ will not decrease the energy, i.e. improve the result.
 
 
 \begin{figure}[H]
@@ -272,8 +279,8 @@ The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mat
 		\caption{}
 		\label{fig:alpha-expansion_Gab_cut3}
 	\end{subfigure}
+\caption{blubb}
 \label{fig:alpha-expansion_Gab_cuts}
-\caption{}
 \end{figure}
 
 
