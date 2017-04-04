@@ -6,6 +6,8 @@
 
 \usepackage[absolute,overlay]{textpos}
 
+\newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
+
 
 \usetheme{Luebeck}
 \usecolortheme{orchid}
@@ -18,16 +20,88 @@
 \frame{\titlepage}
 
 \frame{
-	\frametitle{Inhaltsverzeichnis}
+	\frametitle{Table of contents}
 	\tableofcontents[hideallsubsections]
 	
 }
 
-\section{Das Material Perowskit}
+\section{Introduction}
+\frame{
+\frametitle{Introduction}
 
-\subsection{Basics}
-\frame{blubb}
+\begin{textblock}{12}(1,5)
+	Until now: \\
+	\begin{itemize}
+	\item 2 label segmentation (foreground / background)
+	\item Efficient via max-flow / min-cut
+	\end{itemize}
+	
+	Now: \\
+	\begin{itemize}
+	\item Segmentation with arbitrary number of labels
+	\item Actual problem is NP-complete
+	\item Reduction to small 2-label problems with approximative methods
+	\end{itemize}
+\end{textblock}
+}
 
+\frame{
+\frametitle{Introduction}
+% Bild + fertige Segmentierung als Motivation was am Ende rauskommen soll.
+blubb
+
+
+}
+
+\section{Mathematical problem formulation}
+\subsection{Basic definitions}
+\frame{
+\frametitle{Basic definitions}
+
+\begin{textblock}{14}(1, 4.5)
+
+	\begin{itemize}
+		\item Image consists of pixels $P = \{ 1, 2, ..., m \}$
+		\item Segmentation labels $\mathcal{L} = \{l_1,l_ 2, ..., l_k\}$
+		\item Each pixel has two statistical values
+		\begin{itemize}
+			\item hypothesis $f \in \mathcal{L}^m$: \ segmentation label
+			\item observation $O$: \qquad \ information in the image (intensities, ...)
+		\end{itemize}
+	\end{itemize}
+	
+	\todo{Fehlt noch was wichtiges?!}
+
+\end{textblock}
+
+}
+
+\subsection{Maximum a posteriori (MAP) estimate}
+\frame{
+\frametitle{Maximum a posteriori (MAP) estimate}
+
+\begin{textblock}{14}(1, 4.5)
+d
+
+\end{textblock}
+
+}
+
+\subsection{Markov Random Fields (MRFs)}
+\frame{blo
+}
+
+\subsection{Multiway Cut Problem}
+\frame{blu
+}
+
+
+\section{Approximative Algorithms}
+\subsection{$\alpha$-$\beta$ swap}
+\subsection{$\alpha$-expansion}
+
+\section{Application example}
+\subsection{flute segmentation}
 
 
 
