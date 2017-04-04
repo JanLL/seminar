@@ -1,0 +1,5 @@
+Fragen:
+	Gedanken zu Alpha-expansion, warum es eine metrik braucht, richtig?
+	Wenn man die unary terme weglaesst, wenn keine striche vom benutzer gezogen werden, wie kommt dann die Information des
+		Bildes ins Spiel?!
+	Beispiel Depth Estimation (von ImageAnalysis) ok fuer Vortrag? Weils eig. um Segmentierung geht... 

@@ -1,0 +1,29 @@
+# walkerator .gitignore
+
+# Blacklist
+*.orig
+*.log
+*_build
+*htmlcov
+*.egg-info
+*__pycache__
+*~
+*.pyc
+*.pdf
+*.png
+*.hdf5
+*.h5
+*.csv
+.coverage
+.tox/
+sonic.log
+*.aux
+*.nav
+*.out
+*.snm
+*.gz
+*.toc
+*.xcf
+
+# Whitelist
+tox.ini
