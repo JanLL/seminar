@@ -113,32 +113,64 @@ $p(A,B) = p(A|B)p(B) = p(B|A) p(A)$ \\
 
 }
 
-\subsection{Markov Random Fields (MRFs)}
+\subsection{Markov Random Field (MRF)}
 \frame{
-\frametitle{Markov Random Fields (MRFs)}
+\frametitle{Markov Random Fields (MRF)}
 
-\begin{textblock}{14}(1, 4.5)
+\begin{textblock}{7}(0., 4.)
+\includegraphics[width=1.15\textwidth]{/home/argo/seminar/mrf1.png}
+\end{textblock}
+
+
+\begin{textblock}{7}(7, 4.5)
 
 \begin{itemize}
-\item Condition for an MRF: Each random variable depends on other random variables only through its neighbors. \\
+\item Condition for an MRF: Each random variable depends on other random variables only through its neighbors: \\
+
+\vspace{0.25cm}
+
 $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 
+\vspace{0.25cm}
+
+\item here: neighborhood system are adjacent pixels
+
 \end{itemize}
-
-
-\todo{bild was mit was connected is um die condition zu verdeutlichen}
 
 \end{textblock}
 
 }
 
 \frame{
-\frametitle{Markov Random Fields (MRFs)}
+\frametitle{Markov Random Fields (MRF) -- Prior term}
 
-\begin{textblock}{14}(1, 4.5)
 
+
+\begin{textblock}{7}(0., 4.)
+\includegraphics[width=1.15\textwidth]{/home/argo/seminar/mrf2.png}
+\end{textblock}
+
+
+\begin{textblock}{9}(7, 5.)
+
+\begin{itemize}
+	\item General for Markov Random Fields: \\
+	Hammersley-Clifford theorem: $p(f) \propto \exp \{- \sum_C V_C(f) \}$ \\
+	$C$: Clique in neighborhood system
+	\item Here: $p(f) \propto \exp\{ - \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) \}$
+	\item Used for smoothing to penalize different neighboring pixel labels.
+\end{itemize}
 
 \end{textblock}
+
+}
+
+\frame{
+\frametitle{Markov Random Fields (MRF) -- Data term}
+
+
+
+
 
 }
 
