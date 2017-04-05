@@ -81,14 +81,41 @@ blubb
 \frametitle{Maximum a posteriori (MAP) estimate}
 
 \begin{textblock}{14}(1, 4.5)
-d
+
+\begin{itemize}
+
+
+\item Objective: $f^* = \arg \max\limits_{f} p(f|O)$ \\
+
+\item Using Bayes' Theorem: $p(f|O) = \frac{p(O|f) p(f)}{p(O)}$ \\
+
+\vspace{0.25cm}
+
+Follows from definition of conditional probabilities: \\
+$p(A,B) = p(A|B)p(B) = p(B|A) p(A)$ \\
+
+\vspace{0.5cm}
+
+\item $\Rightarrow f^* = \arg \max\limits_{f} p(O|f)p(f)$ \\
+
+\vspace{0.4cm}
+
+\item We need expressions for \\
+	\begin{itemize}
+	\item $p(O|f)$ -- \textit{likelihood} 
+	\item $p(f)$ -- \textit{prior probability}
+	\end{itemize}
+
+\end{itemize}
+
 
 \end{textblock}
 
 }
 
 \subsection{Markov Random Fields (MRFs)}
-\frame{blo
+\frame{
+
 }
 
 \subsection{Multiway Cut Problem}
