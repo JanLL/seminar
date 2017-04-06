@@ -6,6 +6,8 @@
 
 \usepackage[absolute,overlay]{textpos}
 
+\usepackage{kbordermatrix}
+
 \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
 
 
@@ -170,7 +172,30 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 \frame{
 \frametitle{Markov Random Fields (MRF) -- Prior term}
 
-\todo{Beispiel anhand Potts model, matrix-schreibweise}
+\begin{textblock}{14}(1, 4.5)
+
+Important example: Generalized Potts model \\
+
+\begin{itemize}
+	\item  $V_{pq}(f_p,f_q) = u_{pq}(1 - \delta(f_p - f_q))$
+	\item Matrix notation: \\
+	
+	\renewcommand{\kbldelim}{(}% Left delimiter
+	\renewcommand{\kbrdelim}{)}% Right delimiter
+	\[
+	  V_{pq} = \kbordermatrix{
+	    & l_1 & l_2 & \dots & l_k \\
+	    l_1   & 0 & u_{pq} & u_{pq} & u_{pq} \\
+	    l_2   & u_{pq} & 0 & \ddots & u_{pq} \\
+	    \dots & u_{pq} & \ddots & \ddots & u_{pq} \\
+	    l_k   & u_{pq} & u_{pq} & u_{pq} & 0 \\
+	    }
+	\]
+	
+	\item Potts model is a metric, important for $\alpha$-expansion
+\end{itemize}
+
+\end{textblock}
 
 }
 
@@ -213,7 +238,7 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 \begin{textblock}{14}(1, 4)
 
 \begin{itemize}
-\item Remember objective: $f^* = \arg \max\limits_{f} p(O|f) p(f) = \arg \min\limits_{f} E(f)$ \\
+\item Remember objective: $f^* = \arg \max\limits_{f} p(O|f) p(f) = \arg \min\limits_{f} E(f;i)$ \\
 
 \item $p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i, p, f_p)$ \\
 \item $p(f) \propto \exp\{ - \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) \}$ \\
@@ -237,7 +262,7 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 
 \subsection{Multiway Cut Problem}
 \frame{
-
+\frametitle{Multiway Cut Problem}
 
 
 
