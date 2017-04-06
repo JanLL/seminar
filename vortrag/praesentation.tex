@@ -207,8 +207,40 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 
 }
 
+\frame{
+\frametitle{Markov Random Fields (MRF) -- Energy formulation}
+
+\begin{textblock}{14}(1, 4)
+
+\begin{itemize}
+\item Remember objective: $f^* = \arg \max\limits_{f} p(O|f) p(f) = \arg \min\limits_{f} E(f)$ \\
+
+\item $p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i, p, f_p)$ \\
+\item $p(f) \propto \exp\{ - \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) \}$ \\
+
+\item Insert these expressions and take negative logarithm:
+\vspace{-0.2cm}
+\begin{align*}
+	E(f) & = - \ln(p(O|f) p(f)) \\
+	& = \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) - \sum\limits_{p \in \mathcal{P}} \ln(g(i, p, f_p)) \\
+	& \stackrel{e.g.}{=} \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) + \sum\limits_{p \in \mathcal{P}} \underbrace{|\bar{i}(f_p) - i_p|}_{D_p(f_p)}
+\end{align*}
+
+
+
+
+\end{itemize}
+
+\end{textblock}
+
+}
+
 \subsection{Multiway Cut Problem}
-\frame{blu
+\frame{
+
+
+
+
 }
 
 
