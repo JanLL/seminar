@@ -157,7 +157,9 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 	\item General for Markov Random Fields: \\
 	Hammersley-Clifford theorem: $p(f) \propto \exp \{- \sum_C V_C(f) \}$ \\
 	$C$: Clique in neighborhood system
+	\vspace{0.25cm}
 	\item Here: $p(f) \propto \exp\{ - \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) \}$
+	\vspace{0.25cm}
 	\item Used for smoothing to penalize different neighboring pixel labels.
 \end{itemize}
 
@@ -166,11 +168,42 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 }
 
 \frame{
+\frametitle{Markov Random Fields (MRF) -- Prior term}
+
+\todo{Beispiel anhand Potts model, matrix-schreibweise}
+
+}
+
+\frame{
 \frametitle{Markov Random Fields (MRF) -- Data term}
 
+\begin{textblock}{7}(0., 4.)
+\includegraphics[width=1.15\textwidth]{/home/argo/seminar/mrf3.png}
+\end{textblock}
 
+\begin{textblock}{9}(7, 5.)
 
+\begin{itemize}
+	\item Assume: Identical Distribution\\
+	\vspace{0.2cm}
+	$p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i, p, f_p)$
+	
+	\item Example:
+	\begin{equation*}
+	\hspace{-0.5cm}
+	g(i_p,f_p) = \begin{cases}
+		\exp(-|\bar{i}_1 - i_p|) & \text{for } f_p=l_1 \\
+		\exp(-|\bar{i}_2 - i_p|) & \text{for } f_p=l_2 \\
+	 	\quad \vdots \\
+		\exp(-|\bar{i}_k - i_p|) & \text{for } f_p=l_k \\
+		\end{cases}
+	\end{equation*}
+	
+	\vspace{0.1cm}
+	$\bar{i}_l$: average intensity label $l$
+\end{itemize}
 
+\end{textblock}
 
 }
 
