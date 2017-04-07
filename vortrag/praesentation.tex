@@ -260,27 +260,102 @@ Important example: Generalized Potts model \\
 
 }
 
+
+\frame{
+
+\todo{Label-space reduction part ?!}
+
+}
+
+
 \subsection{Multiway Cut Problem}
 \frame{
 \frametitle{Multiway Cut Problem}
 
-\begin{textblock}{7}(0.5, 4.5)
+% will hier nur das Prinzip von nem Cut erklaeren und die wichtigsten Sachen
+% Genaue weights kommen dann bei den 2 approx. Methoden
+
+\begin{textblock}{8}(0.5, 4.5)
 \includegraphics[width=1.2\textwidth]{/home/argo/seminar/data/general_multiway_cut_graph.png}
 \end{textblock}
 
 
-\begin{textblock}{9}(9, 5.)
+\begin{textblock}{6.}(9.5, 8.)
 
 \begin{itemize}
-	\item a
+	\item New graph \\ $\mathcal{G}_{mwc} = \langle\mathcal{N}_p \cup \mathcal{N}_t, \mathcal{E}_n \cup \mathcal{E}_t \rangle$
+	\vspace{0.05cm} \\
+	\item Weights are a function of prior- and data terms
 \end{itemize}
 
 \end{textblock}
 
 }
 
+\frame{
+\frametitle{Multiway Cut Problem}
+
+\begin{textblock}{12}(1., 4.5)
+\textbf{Definition: \textit{multiway cut}}\\
+A multiway cut is a subset $\mathcal{C} \subset \mathcal{E}$ of the graph's edges such that all terminals are no longer connected via edges in the induced graph $\mathcal{G}(\mathcal{C}) = \langle \mathcal{N}, \mathcal{E} - \mathcal{C}\rangle$.
+ The cost of the cut $|\mathcal{C}|$ is the sum over all cutted edge's weights. 
+ 
+ The minimum multiway cut problem is to find the multiway cut which minimizes $|\mathcal{C}|$. 
+\end{textblock}
+
+\begin{textblock}{12}(1., 11.)
+\textbf{Definition: \textit{feasability multiway cut}}\\
+A multiway cut is called feasible if each pixel node is left connected with exactly one terminal node in $\mathcal{G}(\mathcal{C})$. \\
+\end{textblock}
+
+}
+
+
+\frame{
+\frametitle{Multiway Cut Problem}
+
+\todo{bild von jeweils nem multiway cut und einem feasible multiway cut um den unterschied zu verdeutlichen}
+
+}
+
+\frame{
+\frametitle{Multiway Cut Problem}
+
+\begin{textblock}{12}(1., 4.5)
+\textbf{Lemma:}\\
+A minimum cost multiway cut $\mathcal{C}$ on $\mathcal{G}_{mwc}$ for terminals $\mathcal{L}$ must be feasible.
+
+\end{textblock}
+
+\begin{textblock}{12}(1., 8.)
+\textbf{Theorem:}\\
+If $\mathcal{C}$ is a minimum cost multiway cut on $\mathcal{G}_{mwc}$, then $f^\mathcal{C}$ minimizes $E(f)$.
+
+\end{textblock}
+
+}
+
+
 
 \section{Approximative Algorithms}
+\frame{
+\frametitle{Approximative Algorithms}
+
+\begin{textblock}{12}(1., 4.5)
+
+\begin{itemize}
+	\item Actual Multiway Cut problem NP-complete \\
+	$\rightarrow$ exponential runtime in number of variables (pixels)
+	\item 
+\end{itemize}
+
+\end{textblock}
+
+
+
+}
+
+
 \subsection{$\alpha$-$\beta$ swap}
 \subsection{$\alpha$-expansion}
 
