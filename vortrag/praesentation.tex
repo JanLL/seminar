@@ -3,8 +3,12 @@
 \usepackage[ngerman]{babel}
 \usepackage[utf8x]{inputenc}
 \usepackage{amsmath,amsfonts,amssymb}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
 
 \usepackage[absolute,overlay]{textpos}
+
+
 
 \usepackage{kbordermatrix}
 
@@ -314,7 +318,8 @@ A multiway cut is called feasible if each pixel node is left connected with exac
 \frame{
 \frametitle{Multiway Cut Problem}
 
-\todo{bild von jeweils nem multiway cut und einem feasible multiway cut um den unterschied zu verdeutlichen}
+\todo{bild von jeweils nem multiway cut und einem feasible multiway cut um den unterschied zu verdeutlichen \\
+Tafel !!!}
 
 }
 
@@ -341,23 +346,55 @@ If $\mathcal{C}$ is a minimum cost multiway cut on $\mathcal{G}_{mwc}$, then $f^
 \frame{
 \frametitle{Approximative Algorithms}
 
-\begin{textblock}{12}(1., 4.5)
+\begin{textblock}{13}(1., 4.5)
 
 \begin{itemize}
-	\item Actual Multiway Cut problem NP-complete \\
+	\item Solving multiway cut problem exactly is NP-complete \\
 	$\rightarrow$ exponential runtime in number of variables (pixels)
-	\item 
+	\item Use approximative algorithms to achieve local minimum in reasonable time. \\
+	\begin{itemize}
+		\item Idea: Iteration with just two different labels in each step.
+		\item $\rightarrow$ max-flow algorithm usable with near-linear complexity.
+	\end{itemize}
+
 \end{itemize}
 
 \end{textblock}
-
-
 
 }
 
 
 \subsection{$\alpha$-$\beta$ swap}
+\frame{
+\frametitle{$\alpha$-$\beta$ swap}
+
+\begin{textblock}{8}(1., 4.5)
+\includegraphics[width=1.5\textwidth]{/home/argo/seminar/data/algorithm-alpha-beta-swap.png}
+\end{textblock}
+
+
+\begin{textblock}{13}(1., 13)
+
+\textbf{Idea:} Loop over all pairs of labels and swap among them while ignoring all other labels 
+
+
+\end{textblock}
+
+
+}
+
 \subsection{$\alpha$-expansion}
+\frame{
+\frametitle{$\alpha$-expansion}
+
+\begin{textblock}{13}(1., 4.5)
+
+
+
+\end{textblock}
+
+
+}
 
 \section{Application example}
 \subsection{flute segmentation}
