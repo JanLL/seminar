@@ -6,6 +6,8 @@
 \usepackage{algorithm}
 \usepackage[noend]{algpseudocode}
 
+\usepackage{subcaption}
+
 \usepackage[absolute,overlay]{textpos}
 
 
@@ -377,7 +379,74 @@ If $\mathcal{C}$ is a minimum cost multiway cut on $\mathcal{G}_{mwc}$, then $f^
 
 \textbf{Idea:} Loop over all pairs of labels and swap among them while ignoring all other labels 
 
+\end{textblock}
 
+}
+
+
+\frame{
+\frametitle{$\alpha$-$\beta$ swap -- min-cut subproblem}
+
+\begin{textblock}{8}(0., 4.5)
+\includegraphics[width=0.8\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab.png}
+\centering \\
+$\mathcal{G}_{\alpha \beta} = \langle \mathcal{N}_{\alpha \beta}, \mathcal{E}_{\alpha \beta} \rangle$
+\end{textblock}
+
+\begin{textblock}{7}(8., 4.5)
+
+\begin{itemize}
+	\item Graph just containts pixels with label $\alpha$ or $\beta$ and corresponding terminal nodes. 
+	\vspace{0.2cm}
+	\item Edge weights are as follows: \\
+	\vspace{0.2cm}
+	\includegraphics[width=0.9\textwidth]{/home/argo/seminar/data/alpha-beta-swap_weight-table.png}
+\end{itemize}
+
+\end{textblock}
+
+}
+
+\frame{
+\frametitle{$\alpha$-$\beta$ swap -- min-cut subproblem}
+
+\begin{textblock}{3}(1., 4.5)
+		\includegraphics[width=1.\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut1.png}
+		\centering \\
+		$p, q \in \alpha$
+\end{textblock}
+
+\begin{textblock}{3}(6., 4.5)
+		\includegraphics[width=1.\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut2.png}
+		\centering \\
+		$p, q \in \beta$
+\end{textblock}
+
+\begin{textblock}{3}(11., 4.5)
+		\includegraphics[width=0.945\textwidth]{/home/argo/seminar/data/alpha-beta-swap_Gab_cut3.png}
+		\centering \\
+		$p \in \beta$, $q \in \alpha$
+\end{textblock}
+
+
+\begin{textblock}{14}(1., 13.)
+	\textbf{Careful:} Cutted terminal edge $t_p^\alpha$ means pixel $p$ gets label $\alpha$. \\
+	Vice versa to general multiway cut problem!
+\end{textblock}
+
+}
+
+\frame{
+\frametitle{$\alpha$-$\beta$ swap -- min-cut subproblem}
+
+\begin{textblock}{12}(1., 4.5)
+\textbf{Theorem:}\\
+There is a one to one correspondence between cuts $\mathcal{C}$ on $\mathcal{G}_{\alpha \beta}$ and labelings that are one $\alpha$-$\beta$ swap away from $f$. Moreover, the cost of a cut $\mathcal{C}$ on $\mathcal{G}_{\alpha \beta}$ is $|\mathcal{C}| = E(f^\mathcal{C})$ plus a constant. \\
+\end{textblock}
+
+\begin{textblock}{12}(1., 10.)
+\textbf{Corollary:}\\
+The optimal $\alpha$-$\beta$ swap from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_{\alpha \beta}$. \\
 \end{textblock}
 
 
