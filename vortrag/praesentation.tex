@@ -456,14 +456,94 @@ The optimal $\alpha$-$\beta$ swap from $f$ is $\hat{f} = f^\mathcal{C}$ where $\
 \frame{
 \frametitle{$\alpha$-expansion}
 
-\begin{textblock}{13}(1., 4.5)
+\begin{textblock}{8}(1., 4.5)
+\includegraphics[width=1.5\textwidth]{/home/argo/seminar/data/algorithm-alpha-expansion.png}
+\end{textblock}
 
 
+\begin{textblock}{13}(1., 12.5)
 
+\textbf{Idea:} Loop over all labels (current one denoted as $\alpha$).  Considering all pixels, switch the pixel labels to $\alpha$ which minimizes $E(f)$.
+
+\end{textblock}
+
+}
+
+
+\frame{
+\frametitle{$\alpha$-expansion -- min-cut subproblem}
+
+\begin{textblock}{8}(0., 3.8)
+\includegraphics[width=0.8\textwidth]{/home/argo/seminar/data/alpha-expansion_G.png}
+\centering \\
+$\mathcal{G}_{\alpha}$ \\
+\end{textblock}
+
+\begin{textblock}{7}(8., 3.8)
+\includegraphics[width=1.0\textwidth]{/home/argo/seminar/data/alpha-expansion_weight-table.png}
+\end{textblock}
+
+
+\begin{textblock}{14}(1., 11.3)
+Graph contains
+\begin{itemize}
+	\item Terminal for both label $\alpha$ and one for all other labels $\bar{\alpha}$.
+	\item Nodes for all pixels.
+	\item Nodes between pixels with different labeling.
+\end{itemize}
+\end{textblock}
+
+}
+
+
+\frame{
+\frametitle{$\alpha$-expansion -- min-cut subproblem}
+
+\begin{textblock}{3}(1., 4.)
+		\includegraphics[width=1.\textwidth]{/home/argo/seminar/data/alpha-expansion_cut1.png}
+		\centering \\
+		$p, q \in \alpha$
+\end{textblock}
+
+\begin{textblock}{3}(6., 4.)
+		\includegraphics[width=1.\textwidth]{/home/argo/seminar/data/alpha-expansion_cut2.png}
+		\centering \\
+		$p, q$ keep previous label
+\end{textblock}
+
+\begin{textblock}{3}(11., 4.)
+		\includegraphics[width=0.945\textwidth]{/home/argo/seminar/data/alpha-expansion_cut3.png}
+		\centering \\
+		$q \in \alpha$ \\
+		p keeps label
+\end{textblock}
+
+
+\begin{textblock}{14}(1., 13.5)
+	\textbf{Careful:} Cutted terminal edge $t_p^\alpha$ means pixel $p$ gets label $\alpha$. \\
+	Vice versa to general multiway cut problem!
+\end{textblock}
+
+}
+
+
+\frame{
+\frametitle{$\alpha$-expansion -- min-cut subproblem}
+
+\begin{textblock}{12}(1., 4.5)
+\textbf{Theorem:}\\
+Let $\mathcal{G}_\alpha$ be construced as above given $f$ and $\alpha$. Then there is a one to one correspondence between elementary cuts on $\mathcal{G}_\alpha$ and labelings within one $\alpha$-expansion of $f$. Moreover, for any elementary cut $\mathcal{C}$ we have $|\mathcal{C}| = E(f^\mathcal{C})$.
+\end{textblock}
+
+
+\begin{textblock}{12}(1., 10.)
+\textbf{Corollary:}\\
+The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mathcal{C}$ is the minimum cut on $\mathcal{G}_\alpha$. \\
 \end{textblock}
 
 
 }
+
 
 \section{Application example}
 \subsection{flute segmentation}
