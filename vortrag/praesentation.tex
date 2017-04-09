@@ -20,7 +20,8 @@
 \usetheme{Luebeck}
 \usecolortheme{orchid}
 
-\title{Seminar Kombinatorische Optimierung: \\ Markov Random Fields}
+\title{Seminar combinatorial optimization}
+\subtitle{Approximative algorithms for the multiway cut problem}
 \author{Jan Lammel}
 
 \begin{document}
@@ -530,6 +531,47 @@ Graph contains
 \frame{
 \frametitle{$\alpha$-expansion -- min-cut subproblem}
 
+\begin{textblock}{6}(0.5, 4.5)
+		\includegraphics[width=0.45\textwidth]{/home/argo/seminar/data/alpha-expansion_cut2.png}
+		\includegraphics[width=0.45\textwidth]{/home/argo/seminar/data/alpha-expansion_cut2_forbidden.png} \\
+		\qquad \ $\surd$ \qquad \qquad \ \  X	
+\end{textblock}
+
+
+\begin{textblock}{9.5}(6., 4.)
+
+\begin{itemize}
+	\item Additional node $a$ required when both pixel keep their old label to include binary potential costs in cut cost $|t_a^{\bar{\alpha}}| = V(f_p, f_q)$.
+	\vspace{0.15cm}
+
+	\item One necessary condition: Potentials $V(f_p, f_q)$ must be a metric:
+	\begin{itemize}
+		\item $V(f_p, f_q) = V(f_q, f_p) \ge 0$
+		\item $V(f_p, f_q) = 0 \Leftrightarrow f_p = f_q$
+		\item $V(f_p, f_q) \le V(f_p, a) + V(a, f_q)$
+	\end{itemize}
+\end{itemize}
+
+\end{textblock}
+
+
+\begin{textblock}{14}(1., 12.5)
+Second cut is forbidden because of metric propery
+
+\vspace{-0.7cm}
+\begin{align*}
+	|t_a^{\bar{\alpha}}| \le |e_{(p,a)}| + |e_{(a,q)}| \qquad & \Leftrightarrow & 
+	V(f_p, f_q) \le V(f_p, a) + V(a, f_q)
+\end{align*}
+\end{textblock}
+
+
+}
+
+
+\frame{
+\frametitle{$\alpha$-expansion}
+
 \begin{textblock}{12}(1., 4.5)
 \textbf{Theorem:}\\
 Let $\mathcal{G}_\alpha$ be construced as above given $f$ and $\alpha$. Then there is a one to one correspondence between elementary cuts on $\mathcal{G}_\alpha$ and labelings within one $\alpha$-expansion of $f$. Moreover, for any elementary cut $\mathcal{C}$ we have $|\mathcal{C}| = E(f^\mathcal{C})$.
@@ -543,6 +585,8 @@ The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mat
 
 
 }
+
+
 
 
 \section{Application example}
