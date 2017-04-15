@@ -151,7 +151,7 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 }
 
 \frame{
-\frametitle{Markov Random Fields (MRF) -- Prior term}
+\frametitle{Markov Random Fields (MRF) -- Prior/Binary term}
 
 
 
@@ -177,7 +177,7 @@ $p(f_p|f_{\mathcal{P} \setminus p}) = p(f_p|f_{\mathcal{N}_p}) $
 }
 
 \frame{
-\frametitle{Markov Random Fields (MRF) -- Prior term}
+\frametitle{Markov Random Fields (MRF) -- Prior/Binary term}
 
 \begin{textblock}{14}(1, 4.5)
 
@@ -207,7 +207,7 @@ Important example: Generalized Potts model \\
 }
 
 \frame{
-\frametitle{Markov Random Fields (MRF) -- Data term}
+\frametitle{Markov Random Fields (MRF) -- Data/Unary term}
 
 \begin{textblock}{7}(0., 4.)
 \includegraphics[width=1.15\textwidth]{/home/argo/seminar/mrf3.png}
@@ -590,7 +590,55 @@ The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mat
 
 
 \section{Application example}
-\subsection{flute segmentation}
+\frame{
+\frametitle{Application example}
+
+opengm benutzt, blabla
+
+}
+
+
+\subsection{Flute segmentation}
+\frame{
+\frametitle{Flute segmentation}
+
+\begin{textblock}{8}(1., 4.5)
+		\includegraphics[width=1.\textwidth]{/home/argo/seminar/code/flute.jpg}
+\end{textblock}
+
+
+\begin{textblock}{6}(9., 4.5)
+
+\begin{itemize}
+	\item 3 different labels
+	\vspace{0.2cm}
+	\item Unary term: \\
+	$D_p(f_p) = |\bar{i}(f_p) - i_p|$
+	\item Binary term: \\
+	$V_{pq} = (1 - \delta_{pq}) \cdot U$
+	
+\end{itemize}
+
+\end{textblock}
+
+\begin{textblock}{14}(1., 11.5)
+
+\begin{itemize}
+	\item $E(f) = \sum\limits_{p \in \mathcal{P}} \sum\limits_{q \in \mathcal{N}_p} V_{pq} (f_p, f_q) + \sum\limits_{p \in \mathcal{P}} {D_p(f_p)}$
+\end{itemize}
+
+\end{textblock}
+
+
+}
+
+\subsection{Depth Map estimation}
+\frame{
+\frametitle{Depth Map estimation}
+
+\todo{Fragen ob als Beispiel auch ok...?}
+
+}
 
 
 
