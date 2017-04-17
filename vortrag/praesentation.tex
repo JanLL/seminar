@@ -16,6 +16,9 @@
 
 \newcommand{\todo}[1]{\textcolor{red}{TODO: #1}}
 
+\setbeamertemplate{bibliography item}[text]
+\bibliographystyle{unsrt}
+
 
 \usetheme{Luebeck}
 \usecolortheme{orchid}
@@ -186,20 +189,22 @@ Important example: Generalized Potts model \\
 \begin{itemize}
 	\item  $V_{pq}(f_p,f_q) = u_{pq}(1 - \delta(f_p - f_q))$
 	\item Matrix notation: \\
+	\vspace{-0.4cm}
 	
 	\renewcommand{\kbldelim}{(}% Left delimiter
 	\renewcommand{\kbrdelim}{)}% Right delimiter
 	\[
 	  V_{pq} = \kbordermatrix{
-	    & l_1 & l_2 & \dots & l_k \\
-	    l_1   & 0 & u_{pq} & u_{pq} & u_{pq} \\
-	    l_2   & u_{pq} & 0 & \ddots & u_{pq} \\
-	    \dots & u_{pq} & \ddots & \ddots & u_{pq} \\
-	    l_k   & u_{pq} & u_{pq} & u_{pq} & 0 \\
+	    & l_1 & l_2 & \dots & l_{k-1} & l_{k} \\
+	    l_1   & 0 & u_{1,2} & \dots & u_{1,k-1} & u_{1,k} \\
+	    l_2   & u_{2,1} & 0 & \ddots & \vdots & u_{2,k} \\
+	    \vdots & \vdots & \ddots & \ddots & u_{...} & \vdots \\
+	    l_{k-1}   & u_{k-1,1} & \dots & u_{...} & 0 & u_{k-1,k} \\
+	    l_k   & u_{k,1} & u_{k,2} & \dots & u_{k,k-1} & 0 \\
 	    }
 	\]
-	
-	\item Potts model is a metric, important for $\alpha$-expansion
+	\vspace{0.1cm}
+	\item Potts model is a metric, important for $\alpha$-expansion $\rightarrow$ later
 \end{itemize}
 
 \end{textblock}
@@ -216,9 +221,9 @@ Important example: Generalized Potts model \\
 \begin{textblock}{9}(7, 5.)
 
 \begin{itemize}
-	\item Assume: Identical Distribution\\
+	\item Assume: i.i.d.\\
 	\vspace{0.2cm}
-	$p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i, p, f_p)$
+	$p(O|f) = \prod\limits_{p \in \mathcal{P}} g(i_p, f_p)$
 	
 	\item Example:
 	\begin{equation*}
@@ -322,7 +327,7 @@ A multiway cut is called feasible if each pixel node is left connected with exac
 \frametitle{Multiway Cut Problem}
 
 \todo{bild von jeweils nem multiway cut und einem feasible multiway cut um den unterschied zu verdeutlichen \\
-Tafel !!!}
+$\rightarrow$ Tafel !!!}
 
 }
 
@@ -593,7 +598,14 @@ The optimal $\alpha$-expansion from $f$ is $\hat{f} = f^\mathcal{C}$ where $\mat
 \frame{
 \frametitle{Application example}
 
-opengm benutzt, blabla
+\begin{textblock}{14}(1., 4.)
+
+\begin{itemize}
+	\item Software: OpenGM 2.0 from HCI, Heidelberg University \cite{opengm}
+	\item 
+\end{itemize}
+
+\end{textblock}
 
 }
 
@@ -640,9 +652,42 @@ opengm benutzt, blabla
 
 }
 
+\frame{
+\frametitle{References}
+
+\begin{textblock}{15}(0.5, 4.)
 
 
+\begin{thebibliography}{9}
+
+\bibitem{boykov98}
+  Yuri Boykov, Olga Veksler and Ramin Zabih:
+  Markov Random Fields with Efficient Approximations,
+  1998,
+  IEEE Computer Society Conference on Computer Vision and
+  Pattern Recognition
+  
+\bibitem{boykov01}
+  Yuri Boykov, Olga Veksler and Ramin Zabih:
+  Fast Approximate Energy Minimization via Graph
+  Cuts,
+  IEEE Transactions on Pattern Analysis and Machine Intelligence archive Volume,
+  23 Issue 11, November 2001 Page 1222-1239
+  
+
+\bibitem{opengm}
+  OpenGM 2.0, Bjoern Andres, Thorsten Beier and Joerg H. Kappes, Heidelberg Collaboratory for Image Processing, University of Heidelberg
+  
+\bibitem{flute-img}
+  \texttt{http://www.duden.de/\_media\_/ full/F/Floete-201100286673.jpg}
+
+  
+
+\end{thebibliography}
+
+\end{textblock}
 	
+}
 	
 	
 \end{document}
